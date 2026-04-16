@@ -1,0 +1,64 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: feature/pynblint_fix
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+    github.com/stevenjgibbons/tt_tab_read:
+      branch: main
+      repo: https://github.com/stevenjgibbons/tt_tab_read/
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/stevenjgibbons/tt_tab_read git:
+        commands:
+        - /usr/bin/env sh .sqa/script.hazy-sepia-buzzard.sh
+        container: qc.acc_geeky-flax-chameleon
+  QC.Doc:
+    repos:
+      github.com/stevenjgibbons/tt_tab_read find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.flimsy-malachite-mayfly.sh
+        container: qc.doc_snappy-ruby-lobster
+      github.com/stevenjgibbons/tt_tab_read git:
+        commands:
+        - /usr/bin/env sh .sqa/script.nerdy-emerald-tuatara.sh
+        container: qc.doc_stinky-lilac-rat
+      github.com/stevenjgibbons/tt_tab_read markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.leaky-heliotrope-whippet.sh
+        container: qc.doc_bluesy-silver-drever
+  QC.Lic:
+    repos:
+      github.com/stevenjgibbons/tt_tab_read licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.freaky-cornflower-booby.sh
+        container: qc.lic_freaky-scarlet-oyster
+  QC.Sec:
+    repos:
+      github.com/stevenjgibbons/tt_tab_read bandit:
+        commands:
+        - /usr/bin/env sh .sqa/script.gimpy-tomato-birman.sh
+        container: qc.sec_cheeky-red-badger
+  QC.Sty:
+    repos:
+      github.com/stevenjgibbons/tt_tab_read flake8:
+        commands:
+        - /usr/bin/env sh .sqa/script.wheezy-pear-husky.sh
+        container: qc.sty_bluesy-alizarin-dachshund
+  QC.Uni:
+    repos:
+      github.com/stevenjgibbons/tt_tab_read pytest:
+        commands:
+        - /usr/bin/env sh .sqa/script.beady-yellow-squirt.sh
+        container: qc.uni_goopy-amethyst-quail
+  QC.Ver:
+    repos:
+      github.com/stevenjgibbons/tt_tab_read get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.gummy-orchid-beagle.sh
+        container: qc.ver_snappy-pear-quail
+timeout: 5400
